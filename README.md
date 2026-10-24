@@ -1,0 +1,1 @@
+On launch the plugin makes a few HTTPS requests to the update server compiled into it (latest version, a signed manifest and signature, and any changed files). It sends nothing else: no identifiers, no telemetry. Set Enabled = false in BepInEx/config/com.blackbox.updater.cfg to turn it off completely.
