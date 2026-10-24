@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\trust.local.props" Condition="Exists('..\..\trust.local.props')" />
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <AssemblyName>BlackboxUpdater</AssemblyName>
+    <RootNamespace>BlackboxUpdater.Plugin</RootNamespace>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <Target Name="RequireGameRoot" BeforeTargets="ResolveAssemblyReferences;CoreCompile" Condition="'$(GameRoot)' == ''">
+    <Error Text="GameRoot is not set. Pass -p:GameRoot=&quot;&lt;folder containing EscapeFromTarkov.exe&gt;&quot; or set it in trust.local.props." />
+  </Target>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute"><_Parameter1>ServerBaseUrl</_Parameter1><_Parameter2>$(UpdaterServerUrl)</_Parameter2></AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute"><_Parameter1>CertPinSha256Hex</_Parameter1><_Parameter2>$(UpdaterCertPin)</_Parameter2></AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute"><_Parameter1>PublicKeyHex</_Parameter1><_Parameter2>$(UpdaterPublicKey)</_Parameter2></AssemblyAttribute>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(GameRoot)\BepInEx\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(GameRoot)\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(GameRoot)\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(GameRoot)\EscapeFromTarkov_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <ProjectReference Include="..\BlackboxUpdater.Core\BlackboxUpdater.Core.csproj" />
+  </ItemGroup>
+</Project>

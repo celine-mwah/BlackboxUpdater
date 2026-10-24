@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <UpdaterServerUrl>https://HOST/blackbox</UpdaterServerUrl>
+    <UpdaterCertPin>64-hex-cert-sha256,spki:64-hex-key-sha256</UpdaterCertPin>
+    <UpdaterPublicKey>128-hex-primary-key,128-hex-spare-key</UpdaterPublicKey>
+  </PropertyGroup>
+</Project>

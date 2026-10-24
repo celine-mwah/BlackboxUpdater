@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+*.user
+*.key
+*.pem
+__pycache__/
+*.pyc
+trust.local.props
